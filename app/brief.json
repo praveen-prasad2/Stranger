@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "HelLo, Stranger",
+    "name": "Hello, Stranger",
     "type": "A One-of-a-Kind Interactive Birthday Experience (not a template website)",
     "birthday_person": "Arshiya",
     "created_by": "Praveen",
@@ -54,7 +54,7 @@
       "id": "hero",
       "goal": "Stop the scroll immediately. This is the 'wow, wait' moment.",
       "type_sequence": [
-        { "text": "HelLo, Stranger..." },
+        { "text": "Hello, Stranger..." },
         { "text": "Yes, you. Don’t look behind you." },
         { "text": "I made something for you." }
       ],
