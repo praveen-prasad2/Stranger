@@ -1,0 +1,566 @@
+@import "tailwindcss";
+
+/* ================================================================== *
+ *  HelLo, Stranger — Ivory & Oxblood
+ *  A calm, editorial birthday letter. One idea per screen, generous
+ *  whitespace, restrained motion, a single warm light that travels
+ *  from dusk to sunrise as she reads.
+ * ================================================================== */
+
+:root {
+  --ivory: #fbf6ed;
+  --ivory-deep: #f4ead7;
+  --paper: #fffdf8;
+  --oxblood: #6e1423;
+  --oxblood-soft: #9c3b49;
+  --gold: #c1943f;
+  --gold-bright: #e6c05a;
+  --gold-light: #e6d5a8;
+  --ink: #241016;
+  --ink-soft: #4a3a3a;
+  --muted: #6e5a57;
+  --line: rgba(193, 148, 63, 0.34);
+
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-script: var(--font-caveat), "Caveat", cursive;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --gutter: clamp(1.5rem, 6vw, 6rem);
+  --measure: 40rem;
+
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-paper: var(--paper);
+  --color-oxblood: var(--oxblood);
+  --color-gold: var(--gold);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ivory);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.18rem);
+  line-height: 1.72;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--oxblood);
+  color: var(--paper);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped,
+html.is-locked,
+html.is-locked body {
+  overflow: clip;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Ambient layers (fixed, behind everything)
+ * ------------------------------------------------------------------ */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+}
+
+/* the travelling light — position + hue eased by JS via CSS vars */
+.aura {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      42vw 42vw at var(--aura-x, 70%) var(--aura-y, 22%),
+      var(--aura-color, rgba(216, 176, 90, 0.28)),
+      transparent 70%
+    ),
+    radial-gradient(60vw 50vw at 50% 120%, rgba(110, 20, 35, 0.05), transparent 60%);
+}
+
+/* thin scroll-progress rule */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--sx, 0));
+  background: linear-gradient(90deg, var(--gold), var(--gold-bright));
+  z-index: 60;
+  opacity: 0.9;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Typography primitives
+ * ------------------------------------------------------------------ */
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.74rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--oxblood-soft);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  color: var(--oxblood);
+  text-wrap: balance;
+}
+.h1 {
+  font-size: clamp(2.6rem, 1.6rem + 5vw, 5.4rem);
+}
+.h2 {
+  font-size: clamp(2rem, 1.3rem + 3.4vw, 3.6rem);
+}
+.h3 {
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.2rem);
+}
+
+.body {
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+.body--lead {
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  color: var(--ink);
+}
+
+.quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 1.1rem + 1.4vw, 2rem);
+  line-height: 1.4;
+  color: var(--oxblood);
+  max-width: 34ch;
+}
+
+.script {
+  font-family: var(--font-script);
+  color: var(--oxblood);
+  line-height: 1;
+}
+
+.rule {
+  width: 3.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* frosted card */
+.card {
+  position: relative;
+  background: linear-gradient(155deg, rgba(255, 253, 248, 0.9), rgba(244, 234, 215, 0.7));
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 30px 70px -40px rgba(36, 16, 22, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Chapter layout
+ * ------------------------------------------------------------------ */
+.chapter {
+  position: relative;
+  z-index: 2;
+  padding-block: clamp(6rem, 16vh, 11rem);
+  padding-inline: var(--gutter);
+}
+.chapter__inner {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+.chapter--center {
+  min-height: 90svh;
+  display: grid;
+  align-content: center;
+  text-align: center;
+}
+.chapter--center .body,
+.chapter--center .quote {
+  margin-inline: auto;
+}
+.chapter--center .rule {
+  margin-inline: auto;
+}
+
+.chapter__head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: clamp(1.5rem, 4vh, 2.75rem);
+}
+.chapter--center .chapter__head {
+  justify-content: center;
+}
+.chapter__head > * {
+  flex: 0 0 auto;
+}
+.chapter__num {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.divider {
+  max-width: 46rem;
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+  position: relative;
+  z-index: 2;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reveal (JS toggles .is-in on the group)
+ * ------------------------------------------------------------------ */
+[data-reveal] {
+  --d: 0ms;
+}
+[data-reveal] .r-word {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform: translateY(0.5em);
+  opacity: 0;
+  transition:
+    transform 0.9s var(--ease),
+    opacity 0.9s var(--ease);
+  transition-delay: var(--d);
+}
+[data-reveal] .r-rise {
+  will-change: transform, opacity;
+  transform: translateY(1.4rem);
+  opacity: 0;
+  transition:
+    transform 1s var(--ease),
+    opacity 1s var(--ease);
+  transition-delay: var(--d);
+}
+[data-reveal].is-in .r-word,
+[data-reveal].is-in .r-rise {
+  transform: translateY(0);
+  opacity: 1;
+}
+[data-reveal].is-block {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    transform 1s var(--ease),
+    opacity 1s var(--ease);
+}
+[data-reveal].is-block.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Buttons
+ * ------------------------------------------------------------------ */
+.btn {
+  --bg: transparent;
+  --fg: var(--oxblood);
+  --bd: var(--gold);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.95em 2em;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  border-radius: 999px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    box-shadow 0.4s var(--ease),
+    transform 0.2s var(--ease);
+}
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, var(--gold), var(--gold-bright));
+  transform: translateY(101%);
+  transition: transform 0.5s var(--ease);
+}
+.btn:hover,
+.btn:focus-visible {
+  color: var(--paper);
+  border-color: var(--gold-bright);
+  box-shadow: 0 14px 40px -14px rgba(193, 148, 63, 0.6);
+  outline: none;
+}
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: translateY(0);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--solid {
+  --fg: var(--paper);
+  --bd: transparent;
+  background: linear-gradient(120deg, var(--oxblood), var(--oxblood-soft));
+  box-shadow: 0 18px 44px -18px rgba(110, 20, 35, 0.55);
+}
+.btn--solid::before {
+  background: linear-gradient(120deg, var(--gold-bright), var(--gold));
+}
+.btn--ghost {
+  border-color: var(--line);
+  --fg: var(--muted);
+}
+
+.link-quiet {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.link-quiet:hover {
+  color: var(--oxblood);
+  border-color: var(--gold);
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--oxblood);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Landing
+ * ------------------------------------------------------------------ */
+.landing {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  text-align: center;
+  background:
+    radial-gradient(48vw 48vw at 50% 42%, rgba(230, 192, 90, 0.22), transparent 70%),
+    var(--ivory);
+}
+.landing__flash {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: radial-gradient(circle at 50% 50%, var(--paper), var(--gold-light) 45%, var(--gold) 100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------ *
+ *  Scene helpers
+ * ------------------------------------------------------------------ */
+.orb-light {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(86vmin, 46rem);
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 253, 248, 0.55) 0%,
+    rgba(244, 234, 215, 0.22) 34%,
+    rgba(230, 192, 90, 0.08) 58%,
+    transparent 74%
+  );
+  filter: blur(6px);
+  z-index: 0;
+  pointer-events: none;
+  animation: orb-float 12s var(--ease-soft) infinite alternate;
+}
+@keyframes orb-float {
+  from { transform: translateY(-1.5%) scale(0.99); }
+  to { transform: translateY(1.5%) scale(1.02); }
+}
+
+.candle {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  width: 7rem;
+  height: 8rem;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+/* the pillar */
+.candle::after {
+  content: "";
+  width: 2.4rem;
+  height: 4.6rem;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(180deg, var(--paper), var(--ivory-deep));
+  box-shadow:
+    inset -6px 0 12px rgba(156, 59, 73, 0.08),
+    inset 6px 0 10px rgba(255, 255, 255, 0.6),
+    0 10px 24px -10px rgba(36, 16, 22, 0.25);
+}
+.candle__flame {
+  position: absolute;
+  left: 50%;
+  bottom: 4rem;
+  translate: -50% 0;
+  width: 1.4rem;
+  height: 3rem;
+  border-radius: 50% 50% 50% 50% / 68% 68% 32% 32%;
+  background: radial-gradient(
+    60% 55% at 50% 72%,
+    rgba(255, 253, 248, 0.95),
+    rgba(230, 200, 120, 0.9) 45%,
+    rgba(193, 148, 63, 0.5) 75%,
+    rgba(193, 148, 63, 0) 100%
+  );
+  filter: drop-shadow(0 0 30px rgba(230, 192, 90, 0.75))
+    drop-shadow(0 0 60px rgba(230, 192, 90, 0.35));
+  transform-origin: 50% 100%;
+  animation: flicker 2.2s var(--ease-soft) infinite alternate;
+  transition:
+    opacity 0.55s var(--ease),
+    transform 0.55s var(--ease),
+    filter 0.55s var(--ease);
+}
+.candle__flame::before {
+  content: "";
+  position: absolute;
+  inset: 30% 24% 6%;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: linear-gradient(to top, rgba(156, 59, 73, 0.4), transparent 72%);
+}
+.candle[data-out="true"] .candle__flame {
+  opacity: 0;
+  transform: scaleY(0.1) translateY(60%);
+  filter: blur(14px);
+}
+@keyframes flicker {
+  0% { transform: scale(0.95) rotate(-2deg); }
+  50% { transform: scale(1.05) rotate(1.5deg); }
+  100% { transform: scale(0.98) rotate(-1deg); }
+}
+
+.reminder {
+  display: flex;
+  gap: 1.1rem;
+  align-items: baseline;
+  padding: 1.15rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.reminder__i {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--gold);
+  flex: none;
+  width: 1.5rem;
+}
+.reminder__t {
+  font-size: clamp(1.1rem, 1rem + 0.7vw, 1.4rem);
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Modal
+ * ------------------------------------------------------------------ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 95;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(36, 16, 22, 0.34);
+  backdrop-filter: blur(3px);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Reduced motion
+ * ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  [data-reveal] .r-line,
+  [data-reveal] .r-word,
+  [data-reveal].is-block {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

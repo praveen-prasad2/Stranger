@@ -1,0 +1,149 @@
+{
+  "project": {
+    "name": "HelLo, Stranger",
+    "type": "A One-of-a-Kind Interactive Birthday Experience (not a template website)",
+    "birthday_person": "Arshiya",
+    "created_by": "Praveen",
+    "objective": "Build something Arshiya has genuinely never seen before — a small, obsessively-crafted digital world she opens on her birthday and can't stop scrolling through. It should feel like a cinematic short film she gets to control, not a webpage with sections. No stock photography, no filler — every scene is built, lit, and animated from scratch."
+  },
+  "creative_concept": {
+    "big_idea": "The whole site is framed as a single unfolding evening — she starts at dusk, in a quiet golden room made of light and particles, and by the end she's standing inside a sunrise. No photographs are used anywhere; everything she sees is generated from typography, light, particles, and abstract 3D form. The 'story' is entirely told through words, motion and atmosphere.",
+    "narrative_arc": [
+      "Dusk: a mysterious, playful opening — someone is talking directly to her",
+      "Warm teasing and shared history, told through kinetic typography rather than pictures",
+      "The turn: her birthday itself, a burst of light and celebration",
+      "The quiet part: acknowledging the wedding ahead, honestly and gently",
+      "The reassurance: a slow build toward calm and confidence",
+      "Sunrise: the finale, bright, hopeful, and unmistakably hers"
+    ]
+  },
+  "design_direction": {
+    "palette_name": "Ivory & Oxblood",
+    "color_palette": {
+      "ivory": "#FBF6ED",
+      "ivory_warm": "#F7EEDF",
+      "paper_white": "#FFFDF8",
+      "oxblood": "#6E1423",
+      "oxblood_soft": "#9C3B49",
+      "champagne_gold": "#C9A24B",
+      "champagne_gold_light": "#E6D5A8",
+      "ink": "#2A1418",
+      "muted_ink": "#8C7A78"
+    },
+    "typography": {
+      "display": "A high-contrast modern serif for hero and section headlines — treated as an art object, animated in 3D depth",
+      "body": "A refined, warm sans-serif for supporting copy",
+      "script": "A single elegant handwritten face, used ONLY for the closing signature — the one moment of true intimacy in the whole site"
+    }
+  },
+  "navigation": {
+    "logo": "H.S.",
+    "links": ["Story", "The Turn", "A Reminder", "Birthday Wish"]
+  },
+  "opening_loader": {
+    "background": "#FBF6ED",
+    "sequence": [
+      "A single thin gold line draws itself horizontally across the screen.",
+      "A minimal percentage counter (0–100) appears beside it in oxblood, tracked with a trailing gold particle.",
+      "At 100%, the line becomes a bright horizontal seam of light that widens into a GSAP clip-path reveal.",
+      "The hero scene appears as if a curtain of light has just opened."
+    ]
+  },
+  "scenes": [
+    {
+      "id": "hero",
+      "goal": "Stop the scroll immediately. This is the 'wow, wait' moment.",
+      "type_sequence": [
+        { "text": "HelLo, Stranger..." },
+        { "text": "Yes, you. Don’t look behind you." },
+        { "text": "I made something for you." }
+      ],
+      "cta": { "text": "Begin" }
+    },
+    {
+      "id": "introduction",
+      "eyebrow": "One — How It Started",
+      "headline": "A stranger who didn’t stay a stranger.",
+      "body": "Somewhere between the random conversations, stupid jokes, serious moments and unforgettable memories, you became someone genuinely important to me."
+    },
+    {
+      "id": "teasing",
+      "eyebrow": "Two — Research Findings",
+      "headline": "You’re still strange.",
+      "body": "After careful observation and years of research, I have reached one important conclusion: you are still strange. But you’re my favourite kind of strange.",
+      "interaction": {
+        "button_text": "Excuse me?!",
+        "on_click": "The headline shakes with a quick elastic snap and 'Evidence confirmed.' appears beneath it, with a small burst of gold confetti-like particles (no emoji)."
+      }
+    },
+    {
+      "id": "birthday-celebration",
+      "eyebrow": "Three — Today",
+      "headline": "Happy Birthday, Arshiya.",
+      "body": "Today is about celebrating the kind, funny, slightly strange and genuinely wonderful person you are.",
+      "completion_effect": "A soft screen-wide bloom of gold particles reveals a hidden line beneath: 'Your wish has officially entered the universe. No refunds.'"
+    },
+    {
+      "id": "new_chapter",
+      "eyebrow": "Four — A New Chapter",
+      "headline": "You don’t have to carry everything alone.",
+      "body": [
+        "I know your wedding is getting closer, and there may be moments when everything feels overwhelming.",
+        "A new beginning can be beautiful and exciting, but it can also feel frightening when so many things are changing at once.",
+        "You don’t have to pretend to be strong every second. Your feelings are valid, and asking for support does not make you weak."
+      ],
+      "highlight": "Even when I cannot solve every problem, I’ll always be here to listen, support you and remind you that you are stronger than you realise."
+    },
+    {
+      "id": "motivation",
+      "eyebrow": "Five — Please Remember",
+      "headline": "You’re going to be okay, Stranger.",
+      "lines": [
+        "Take everything one day at a time.",
+        "Speak when something feels heavy.",
+        "Ask for support whenever you need it.",
+        "Never believe that your feelings are a burden.",
+        "You deserve to feel heard, respected, supported and loved."
+      ],
+      "quote": "A new chapter does not erase who you are. It gives you another place to grow."
+    },
+    {
+      "id": "personal_message",
+      "eyebrow": "Six — From Me to You",
+      "headline": "One honest message.",
+      "body": [
+        "This birthday arrives just before one of the biggest chapters of your life.",
+        "I know everything may not feel easy right now, but I hope you remember how strong, capable and deserving of happiness you are.",
+        "You do not need to have everything figured out today. Move forward at your own pace and never be afraid to say when something feels wrong or overwhelming.",
+        "Whatever happens, Stranger, you will always have someone cheering for you."
+      ],
+      "highlight": "You’re going to be okay. More than okay—you’re going to create a beautiful life.",
+      "signature": "Always here to listen, support and annoy you,\nPraveen"
+    },
+    {
+      "id": "secret_message",
+      "trigger": { "text": "Do Not Click" },
+      "modal": {
+        "title": "Of course you clicked it.",
+        "body": "You really don’t listen, Stranger. Anyway, I hope this year gives you countless reasons to smile—and fewer reasons to overthink.",
+        "close_button": "Okay, fine."
+      }
+    },
+    {
+      "id": "finale",
+      "eyebrow": "Seven — Always",
+      "content": {
+        "primary": "Happy Birthday, Arshiya.",
+        "secondary": "The Stranger begins another beautiful chapter.",
+        "supporting": "Not alone. Not without hope. And definitely not without someone to annoy her.",
+        "closing": "This isn’t the end. It’s just a new beginning."
+      },
+      "actions": [
+        { "text": "Replay the Story" },
+        { "text": "One Last Message" }
+      ],
+      "final_note": "No matter where this next chapter takes you, never forget your worth. Keep smiling, believe in yourself and stay wonderfully strange. I’ll be rooting for you."
+    }
+  ],
+  "final_instruction": "This is not a birthday-card website — it's a short, obsessively art-directed digital experience built entirely from light, type, and 3D form, with no photographs anywhere. Ivory carries the whole design; oxblood and champagne gold are used sparingly and deliberately for emotion and shine. The exact phrase 'HelLo, Stranger...' must be the first main text shown."
+}
